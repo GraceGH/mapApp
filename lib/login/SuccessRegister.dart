@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../style.dart';
+
 class SuccessRegisterPage extends StatelessWidget {
   const SuccessRegisterPage({super.key});
 
@@ -8,6 +10,8 @@ class SuccessRegisterPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sucess Register'),
+        automaticallyImplyLeading: false,
+        backgroundColor: AppColor.blue1,
       ),
       body: Center(
         child: Column(
@@ -21,7 +25,11 @@ class SuccessRegisterPage extends StatelessWidget {
             ),
             ElevatedButton(onPressed: (){
               Navigator.popUntil(context,(route)=>route.isFirst);
-            }, child: const Text('Login')),
+            },
+                style: ElevatedButton.styleFrom(
+                  primary: AppColor.blue1, // Set your desired color here
+                ),
+                child: const Text('Login')),
           ],
         ),
       ),
