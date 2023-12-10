@@ -1,7 +1,8 @@
+// mainPage.dart
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'favorites.dart';
-import 'mypage.dart';
-import 'home.dart';
+import 'package:mobileapp/favorites.dart';
 import 'setting.dart';
 import 'style.dart';
 
@@ -62,10 +63,17 @@ class _MainPageState extends State<MainPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          showCupertinoModalPopup(  // ➋ BottomSheet 열기
+            context: context,
+            builder: (_) => Favourites(
+              // selectedDate: selectedDate,
+            ),
+          );
           // TODO: Define the action when the button is pressed
         },
         backgroundColor: AppColor.blue1, // Set the background color
-        child: Icon(Icons.star), // Set the icon
+        child: Icon(Icons.star),
+        mini: true,// Set the icon
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

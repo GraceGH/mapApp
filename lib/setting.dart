@@ -1,14 +1,6 @@
-// setting.dart
-// import 'package:capstone/myAccount/accountInfo.dart';
-// import 'package:capstone/schedule/database/drift_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:get_it/get_it.dart';
-import 'package:mobileapp/myAccount/accountInfo.dart';
-// import '../login.dart';
 import 'login/LoginPage.dart';
-// import 'logoutPage.dart';
-// import 'quitPage.dart';
 
 class Setting extends StatelessWidget {
   Setting({Key? key}) : super(key:key);
@@ -164,88 +156,65 @@ class _SettingDetailState extends State<SettingDetail> {
 
 
 
-// import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-//
-// class Setting extends StatelessWidget {
-//   final List<String> itemList = [
-//     '계정정보',
-//     '로그아웃',
-//     '회원탈퇴',
-//   ];
-//   Setting({Key? key}) : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(
-//           '설정',
-//           style: TextStyle(color: Colors.black),
-//         ),
-//         backgroundColor: Colors.white,
-//         iconTheme: IconThemeData(color: Colors.black),
-//       ),
-//       body: ListView.builder(
-//         itemCount: itemList.length,
-//         itemBuilder: (BuildContext context, int index) {
-//           return ListTile(
-//             title: Text(itemList[index]),
-//             onTap: () {
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(
-//                   builder: (context) =>
-//                       ItemDetailPage(itemName: itemList[index]),
-//                 ),
-//               );
-//             },
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
-//
-// class ItemDetailPage extends StatelessWidget {
-//   final String itemName;
-//
-//   // 생성자를 통해 itemName을 전달받습니다.
-//   ItemDetailPage({required this.itemName});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(
-//           '$itemName',
-//           style: TextStyle(color: Colors.black),
-//         ),
-//         backgroundColor: Colors.white,
-//         iconTheme: IconThemeData(color: Colors.black),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Text(
-//               'Detail for $itemName', // 선택한 아이템의 이름을 표시
-//               style: TextStyle(fontSize: 24),
-//             ),
-//             if (itemName == '로그아웃') // 로그아웃이 선택되었을 때
-//               ElevatedButton(
-//                 onPressed: () {
-//                   // 여기에 로그아웃 처리를 추가
-//                   // 예:
-//                   FirebaseAuth.instance.signOut();
-//                 },
-//                 child: Text('로그아웃'),
-//               ),
-//             // 여기에 해당 아이템의 추가 세부 정보를 표시하는 위젯을 추가할 수 있습니다.
-//
-//             // 여기에 해당 아이템의 추가 세부 정보를 표시하는 위젯을 추가할 수 있습니다.
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+class AccountDetail extends StatefulWidget {
+  const AccountDetail({super.key});
+
+  @override
+  State<AccountDetail> createState() => _AccountDetailState();
+}
+class _AccountDetailState extends State<AccountDetail> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      //   body: Center(
+      //     child: Column(
+      //       mainAxisAlignment: MainAxisAlignment.center,
+      //       crossAxisAlignment: CrossAxisAlignment.center,
+      //       children: [
+      //         GetBuilder<AuthService>(
+      //           builder: (authController) {
+      //             // 사용자가 로그인하지 않았을 때
+      //             if (authController.user.value == null) {
+      //               return Text(
+      //                 '로그인되지 않았습니다.',
+      //                 style: TextStyle(fontSize: 16),
+      //               );
+      //             }
+      //
+      //             // 사용자가 익명 로그인한 경우
+      //             if (loginMethod=='Anonymous') {
+      //               return Column(
+      //                 children: [
+      //                   Text(
+      //                     '\'익명 로그인\' 상태입니다.',
+      //                     style: TextStyle(fontSize: 18),
+      //                   ),
+      //                 ],
+      //               );
+      //             }
+      //
+      //             // 사용자가 Google 로그인한 경우
+      //             if (loginMethod=='Google') {
+      //               return Column(
+      //                 children: [
+      //                   Text(
+      //                     '계정: Google 로그인',
+      //                     style: TextStyle(fontSize: 16),
+      //                   ),
+      //                 ],
+      //               );
+      //             }
+      //
+      //             // 다른 로그인 방식에 대한 처리 추가 가능
+      //
+      //             return Container(); // 기타 경우에는 빈 컨테이너 반환
+      //           },
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+    );
+  }
+}
+
+
