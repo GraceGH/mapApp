@@ -1,8 +1,7 @@
-// mainPage.dart
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobileapp/favorites.dart';
+import 'favourites.dart';
+import 'mypage.dart';
+import 'home.dart';
 import 'setting.dart';
 import 'style.dart';
 
@@ -14,15 +13,28 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int _selectedIndex = 1; // Index of the selected tab
+  IconData _floatingButtonIcon = Icons.home; // Default icon
+
+  final List<Widget> _pages = [
+    Favourites(),
+    Home(),
+    MyPage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
-          elevation: 0,
+          elevation: 1,
           backgroundColor: Colors.white,
           title: const Text(
             'MapEasy',
@@ -50,126 +62,95 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
 
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _buildSearchBar(),
-          ),
-          Expanded(
-            child: _buildMap(),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return Dialog(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                elevation: 0.0,
-                backgroundColor: Colors.transparent,
-                child: Container(
-                  width: 400,
-                  height: 500,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        '즐겨찾기',
-                        style: TextStyle(fontSize: 18),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(16.0),
+          topRight: Radius.circular(16.0),
+        ),
+        child: BottomAppBar(
+          color: Colors.white, // 네비게이션 바의 배경색
+          shape: const CircularNotchedRectangle(), // 테두리를 둥글게 만듭니다.
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 0;
+                        _floatingButtonIcon = Icons.home;
+                      });
+                    },
+                    child: Text(
+                      '즐겨찾기',
+                      style: TextStyle(
+                        fontFamily: "Lotte",
+                        fontSize: 20,
+                        color:
+                            _selectedIndex == 0 ? AppColor.blue1 : Colors.grey,
                       ),
-                      SizedBox(height: 20),
-                      Row(
-                        children: [
-
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          );
-        },
-        backgroundColor: AppColor.blue1, // Set the background color
-        child: Icon(Icons.star),
-        mini: true,// Set the icon
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-    );
-  }
-
-  Widget _buildSearchBar() {
-    return Row(
-      children: [
-        SizedBox(width:5,),
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(Icons.search, color: Colors.grey),
-                ),
-                Container(
-                  width: 200,
-                  height:50,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: '장소를 입력하세요',
-                      border: InputBorder.none,
-                      filled: true,
-                      fillColor: Colors.grey.shade200,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            onPressed: () {
-              // TODO: 검색 버튼을 눌렀을 때의 동작 추가
-            },
-            style: ElevatedButton.styleFrom(
-              primary: AppColor.blue1,
-              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
+                ],
               ),
-            ),
-            child: Text(
-              '검색',
-              style: TextStyle(fontSize: 16),
-            ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 2;
+                        _floatingButtonIcon = Icons.home;
+                      });
+                    },
+                    child: Text(
+                      '마이페이지',
+                      style: TextStyle(
+                        fontFamily: "Lotte",
+                        fontSize: 20,
+                        color:
+                            _selectedIndex == 2 ? AppColor.blue1 : Colors.grey,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-      ],
+      ),
+
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: _selectedIndex ==1 ? Container()
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: SizedBox(
+        height: 70.0,
+        width: 70.0,
+        child: FittedBox(
+          child: FloatingActionButton(
+            backgroundColor: AppColor.blue1,
+            onPressed: () {
+              setState(() {
+                _selectedIndex = 1; // 현재 페이지가 인덱스 1이 아닐 때는 PlanPage로 이동
+              });
+              // }
+            },
+            child: Column(children: [
+              Container(
+                height: 17,
+              ),
+              Icon(
+                _floatingButtonIcon,
+                color: Colors.white,
+                size: 23,
+              ),
+            ]),
+          ),
+        ),
+      ),
     );
   }
-
-
-  Widget _buildMap() {
-    // TODO: 지도를 표시하는 위젯 추가
-    // 예를 들어, Google Maps 플러그인을 사용할 수 있습니다.
-    // https://pub.dev/packages/google_maps_flutter
-    return Container(
-    );
-  }
-
 }
