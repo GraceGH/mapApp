@@ -1,3 +1,5 @@
+// mainPage.dart
+
 import 'package:flutter/material.dart';
 import 'favorites.dart';
 import 'mypage.dart';
@@ -31,6 +33,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, // 추가된 부분
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
