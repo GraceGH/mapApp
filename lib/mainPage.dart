@@ -63,13 +63,42 @@ class _MainPageState extends State<MainPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showCupertinoModalPopup(  // ➋ BottomSheet 열기
+          showDialog(
             context: context,
-            builder: (_) => Favourites(
-              // selectedDate: selectedDate,
-            ),
+            builder: (BuildContext context) {
+              return Dialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                elevation: 0.0,
+                backgroundColor: Colors.transparent,
+                child: Container(
+                  width: 400,
+                  height: 500,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '즐겨찾기',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        children: [
+
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
           );
-          // TODO: Define the action when the button is pressed
         },
         backgroundColor: AppColor.blue1, // Set the background color
         child: Icon(Icons.star),
@@ -78,7 +107,6 @@ class _MainPageState extends State<MainPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
-
 
   Widget _buildSearchBar() {
     return Row(

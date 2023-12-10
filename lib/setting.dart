@@ -58,7 +58,8 @@ class _SettingDetailState extends State<SettingDetail> {
       // Perform any additional logout logic if needed
 
       // Navigate to LoginPage
-      Get.offAll(() => LoginPage());
+      // Get.offAll(() => LoginPage());
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
     }
   }
 
@@ -111,7 +112,9 @@ class _SettingDetailState extends State<SettingDetail> {
                 setState(() {});
 
                 // Navigate to LoginPage
-                Get.offAll(() => LoginPage());
+                // Get.offAll(() => LoginPage());
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
+
               },
               child: Text('확인'),
             ),

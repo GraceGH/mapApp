@@ -1,4 +1,7 @@
+// LoginPage.dart
+
 import 'package:flutter/material.dart';
+import '../style.dart';
 import 'RegisterPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -8,9 +11,11 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Login'),
+      //   automaticallyImplyLeading: false, // Hide the back button
+      //
+      // ),
       body: const LoginForm(),
     );
   }
@@ -37,8 +42,34 @@ class _LoginFormState extends State<LoginForm> {
           key: _formKey,
           child: ListView(
             children: [
+              SizedBox(height: 100,),
+              const Text(
+                'MapEasy',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "Lotte",
+                  fontSize: 55,
+                  color: AppColor.blue1,
+                ),
+              ),
+              SizedBox(height: 150,),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200], // Set the background color to gray
+                  // labelText: 'Email',
+                  hintText: 'Email',
+                  prefixIcon: Icon(Icons.email, color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0), // Set the border radius
+                    borderSide: BorderSide.none, // Remove the border
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                    borderSide: BorderSide(color: Colors.transparent), // Set the border color to transparent
+                  ),
+                  // You can add more styling options here
+                ),
                 onChanged: (value) {
                   email = value;
                 },
@@ -48,7 +79,20 @@ class _LoginFormState extends State<LoginForm> {
               ),
               TextFormField(
                 obscureText: true,
-                decoration: const InputDecoration(labelText: 'Password'),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200], // Set the background color to gray
+                  // labelText: 'Password',
+                  hintText: 'Password',
+                  prefixIcon: Icon(Icons.lock, color: Colors.grey),
+                  // suffixIcon: Icon(Icons.visibility, color: Colors.grey),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0), // Set the border radius
+                    borderSide: BorderSide.none, // Remove the border
+                  ),
+                  // You can add more styling options here
+                ),
                 onChanged: (value) {
                   password = value;
                 },
@@ -60,8 +104,8 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed: () async {
                     try {
                       final currentUser =
-                          await _authentication.signInWithEmailAndPassword(
-                              email: email, password: password);
+                      await _authentication.signInWithEmailAndPassword(
+                          email: email, password: password);
 
                       if (currentUser.user != null) {
                         _formKey.currentState!.reset();
@@ -71,6 +115,9 @@ class _LoginFormState extends State<LoginForm> {
                       print(e);
                     }
                   },
+                  style: ElevatedButton.styleFrom(
+                    primary: AppColor.blue1, // Set the desired color here
+                  ),
                   child: const Text('Enter')),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
