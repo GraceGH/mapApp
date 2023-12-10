@@ -104,7 +104,7 @@ class _MainPageState extends State<MainPage> {
         child: Icon(Icons.star),
         mini: true,// Set the icon
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
 
