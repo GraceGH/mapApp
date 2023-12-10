@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'favourites.dart';
+import 'favorites.dart';
 import 'mypage.dart';
 import 'home.dart';
 import 'setting.dart';
@@ -31,10 +31,11 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
-          elevation: 1,
+          elevation: 0,
           backgroundColor: Colors.white,
           title: const Text(
             'MapEasy',
