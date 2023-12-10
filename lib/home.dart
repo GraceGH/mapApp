@@ -13,6 +13,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Padding(
@@ -137,7 +138,6 @@ class _HomeState extends State<Home> {
     // 예를 들어, Google Maps 플러그인을 사용할 수 있습니다.
     // https://pub.dev/packages/google_maps_flutter
     return Container(
-      color: Colors.grey.shade300, // 임시 색상, 지도 표시 위젯으로 교체해야 합니다.
     );
   }
 }
