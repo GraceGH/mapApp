@@ -61,49 +61,50 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _showFavoritesDialog, // Call the method to show favorites dialog
+      //   backgroundColor: AppColor.blue1,
+      //   child: Icon(Icons.star),
+      //   mini: true,
+      // ),
+      // floatingActionButton: FloatingActionButton(  // ➊ 새 일정 버튼
+      //   backgroundColor: AppColor.blue1,
+      //   onPressed: () {
+      //     showCupertinoModalPopup(  // ➋ BottomSheet 열기
+      //       context: context,
+      //       builder: (_) => Favorites(
+      //       ),
+      //     );
+      //   },
+      //   child: Icon(
+      //     Icons.star,
+      //     color: Colors.white,
+      //
+      //   ),
+      // ),
+
       floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColor.blue1,
         onPressed: () {
           showDialog(
             context: context,
             builder: (BuildContext context) {
               return Dialog(
+                // Customize the appearance of the dialog
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0),
                 ),
-                elevation: 0.0,
-                backgroundColor: Colors.transparent,
-                child: Container(
-                  width: 400,
-                  height: 500,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        '즐겨찾기',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(height: 20),
-                      Row(
-                        children: [
-
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                child: Favorites(),
               );
             },
           );
         },
-        backgroundColor: AppColor.blue1, // Set the background color
-        child: Icon(Icons.star),
-        mini: true,// Set the icon
+        child: Icon(
+          Icons.star,
+          color: Colors.white,
+        ),
       ),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
@@ -162,7 +163,6 @@ class _MainPageState extends State<MainPage> {
       ],
     );
   }
-
 
   Widget _buildMap() {
     // TODO: 지도를 표시하는 위젯 추가
